@@ -1,0 +1,23 @@
+{
+  "name": "snovestudio-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "check": "astro check && node scripts/check-links.ts",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "7.3.6"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@types/node": "^24.19.1",
+    "typescript": "^5.9.3"
+  }
+}

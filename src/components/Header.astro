@@ -1,0 +1,21 @@
+---
+import { siteConfig } from '../config/site';
+interface Props { isHome?: boolean }
+const { isHome = false } = Astro.props;
+const home = isHome ? '' : '/';
+---
+<a class="skip-link" href="#main">본문으로 바로가기</a>
+<header class="site-header wrap">
+  <a class="brand" href="/" aria-label={`${siteConfig.business.brandName} 홈`}>
+    <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <path d="M6 24V14C6 8.477 10.477 4 16 4v10c0 5.523-4.477 10-10 10Z" fill="currentColor" />
+      <path d="M16 28V18c0-5.523 4.477-10 10-10v10c0 5.523-4.477 10-10 10Z" fill="currentColor" opacity=".55" />
+    </svg>
+    <span>{siteConfig.business.brandName}</span>
+  </a>
+  <nav aria-label="주요 메뉴">
+    <a href={`${home}#service`}>서비스</a>
+    <a href={`${home}#studio`}>스튜디오</a>
+    <a href={`${home}#contact`}>문의</a>
+  </nav>
+</header>

@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Arrow from '../components/Arrow.astro';
+import { siteConfig } from '../config/site';
+---
+<BaseLayout title={`페이지를 찾을 수 없습니다 | ${siteConfig.business.brandName}`} description="요청하신 페이지를 찾을 수 없습니다." noindex>
+  <main class="not-found wrap" id="main">
+    <p class="eyebrow">404</p>
+    <h1>페이지를 찾을 수 없습니다.</h1>
+    <p>주소를 확인하거나 홈페이지로 이동해 주세요.</p>
+    <a class="text-link" href="/">홈으로 돌아가기<Arrow /></a>
+  </main>
+</BaseLayout>

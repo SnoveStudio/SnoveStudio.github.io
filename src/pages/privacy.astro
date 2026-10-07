@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Arrow from '../components/Arrow.astro';
+import { siteConfig, mailLink, privacyLabel } from '../config/site';
+const { business, service, privacy } = siteConfig;
+const published = privacy.status === 'published';
+const description = published
+  ? `${service.name}의 개인정보처리방침과 문의처를 안내합니다.`
+  : `${service.name}의 개인정보처리방침 준비 현황과 문의처를 안내합니다.`;
+---
+<BaseLayout title={`${privacyLabel} | ${business.brandName}`} description={description} noindex={!published}>
+  <main class="policy-page wrap" id="main">
+    <a class="back-link" href="/">← 홈으로</a>
+    <p class="eyebrow">{business.brandName}</p>
+    <h1>{privacyLabel}</h1>
+    {published ? (
+      <>
+        <p class="policy-date">적용일: {privacy.effectiveDate}</p>
+        {privacy.sections.map((section) => (
+          <section class="policy-section">
+            <h2>{section.title}</h2>
+            {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+          </section>
+        ))}
+      </>
+    ) : (
+      <div class="policy-notice">
+        <span class="status"><span class="small-dot"></span>개발 중</span>
+        <h2>개인정보처리방침을 준비하고 있습니다.</h2>
+        <p>{service.name}는 현재 {service.platforms.join(' · ')}용으로 개발 중입니다. 개인정보처리방침은 실제 앱의 데이터 처리 방식이 확정된 후 이 페이지에 게시됩니다.</p>
+        <p>이 안내는 확정된 개인정보처리방침이 아닙니다.</p>
+      </div>
+    )}
+    <section class="policy-contact">
+      <h2>개인정보 관련 문의</h2>
+      <p>앱의 개인정보 처리와 관련한 문의는 아래 이메일로 보내주세요.</p>
+      <a class="text-link" href={mailLink}>{business.email}<Arrow /></a>
+      <p class="policy-operator">운영 사업자: {business.registeredName} · {business.brandName}</p>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,52 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../config/site';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  isHome?: boolean;
+  noindex?: boolean;
+}
+const { title, description, isHome = false, noindex = false } = Astro.props;
+const { site, business } = siteConfig;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const structuredData = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: business.brandName,
+  legalName: business.registeredName,
+  url: Astro.site?.href,
+  email: business.email,
+  taxID: business.registrationNumber,
+}).replace(/</g, '\\u003c');
+---
+<!doctype html>
+<html lang={site.language}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#193d31" />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    {site.googleSiteVerification && <meta name="google-site-verification" content={site.googleSiteVerification} />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:site_name" content={business.brandName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <script is:inline type="application/ld+json" set:html={structuredData} />
+  </head>
+  <body>
+    <Header isHome={isHome} />
+    <slot />
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,12 @@
+---
+import Arrow from './Arrow.astro';
+import { siteConfig, privacyLabel } from '../config/site';
+const { business } = siteConfig;
+---
+<footer class="site-footer wrap">
+  <div>
+    <a class="footer-brand" href="/">{business.brandName}</a>
+    <p>© {new Date().getUTCFullYear()} {business.brandName} · 운영 {business.registeredName}</p>
+  </div>
+  <a class="privacy-link" href="/privacy/">{privacyLabel}<Arrow /></a>
+</footer>
