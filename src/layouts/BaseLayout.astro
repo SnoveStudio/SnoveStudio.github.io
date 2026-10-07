@@ -12,7 +12,8 @@ interface Props {
 }
 const { title, description, isHome = false, noindex = false } = Astro.props;
 const { site, business } = siteConfig;
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const pathname = Astro.url.pathname;
+const canonical = new URL(pathname.endsWith('/') || pathname.endsWith('.html') ? pathname : `${pathname}/`, Astro.site);
 const structuredData = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Organization',
