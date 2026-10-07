@@ -16,7 +16,7 @@ export const siteConfig = {
     language: 'ko',
     title: 'SnoveStudio | 일상에 닿는 모바일 앱',
     description: 'SnoveStudio는 스노베가 운영하는 모바일 앱 스튜디오입니다. 이미지를 태그로 정리하고 키보드에서 찾아 공유하는 MemeDraw를 개발하고 있습니다.',
-    googleSiteVerification: 'LwWqcpzPy2jwzRH3ilHlbk42skIbRwbHuKZ_3dmFf-s',
+    googleSiteVerification: 'bhxwy48DUPm-XecimBEhV5jgoSVuli6Ousq2LV7JC0o',
   },
   business: {
     brandName: 'SnoveStudio',
